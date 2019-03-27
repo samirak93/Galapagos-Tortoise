@@ -60,7 +60,7 @@ p {
 }
 
 .row {
-  height: 50px;
+  height: 70px;
   width: 100%;
 }
 
@@ -106,16 +106,20 @@ background-color: #4ea0da;
     <div class='row' id='filters'>
     <input id='all' type='radio' name='toggle' value='all' checked='checked'>
     <label for='all'>All</label>
-    <input id='Sparkey' type='radio' name='toggle' value='Sparkey'>
-    <label for='Sparkey'>Sparkey</label>
-    <input id='Charles' type='radio' name='toggle' value='Charles'>
-    <label for='Charles'>Charles</label>
-    <input id='Chrissie' type='radio' name='toggle' value='Chrissie'>
-    <label for='Chrissie'>Chrissie</label>
+    <input id='Alison' type='radio' name='toggle' value='Alison'>
+    <label for='Alison'>Alison</label>
+    <input id='Andrea' type='radio' name='toggle' value='Andrea'>
+    <label for='Andrea'>Andrea</label>
     <input id='Karlitos' type='radio' name='toggle' value='Karlitos'>
     <label for='Karlitos'>Karlitos</label>
+    <input id='Chrissie' type='radio' name='toggle' value='Chrissie'>
+    <label for='Chrissie'>Chrissie</label>
+    <input id='Delmira' type='radio' name='toggle' value='Delmira'>
+    <label for='Delmira'>Delmira</label>
     <input id='Connor' type='radio' name='toggle' value='Connor'>
     <label for='Connor'>Connor</label>
+    <input id='Lucy' type='radio' name='toggle' value='Lucy'>
+    <label for='Lucy'>Lucy</label>
 </div>
 </div>
 
@@ -138,7 +142,7 @@ map.on('load', function() {
     map.addSource('tortoise',
     {
     "type": "geojson",
-    "data": "geojson.geojson"
+    "data": "data.geojson"
     });
 
 
@@ -197,24 +201,28 @@ map.on('load', function() {
 
   document.getElementById('filters').addEventListener('change', function(e) {
   var name = e.target.value;
-  // update the map filter
+  
   if (name === 'all') {
     filterName = ['!=', ['string', ['get', 'individual-local-identifier']], 'placeholder'];
-  } else if (name === 'Sparkey') {
-    filterName = ['match', ['get', 'individual-local-identifier'], ['Sparkey'], true, false];
-  } else if (name === 'Charles') {
-    filterName = ['match', ['get', 'individual-local-identifier'], ['Charles'], true, false];
+  } else if (name === 'Alison') {
+    filterName = ['match', ['get', 'individual-local-identifier'], ['Alison'], true, false];
+  } else if (name === 'Andrea') {
+    filterName = ['match', ['get', 'individual-local-identifier'], ['Andrea'], true, false];
   } else if (name === 'Chrissie') {
     filterName = ['match', ['get', 'individual-local-identifier'], ['Chrissie'], true, false];
   } else if (name === 'Karlitos') {
     filterName = ['match', ['get', 'individual-local-identifier'], ['Karlitos'], true, false];
   } else if (name === 'Connor') {
     filterName = ['match', ['get', 'individual-local-identifier'], ['Connor'], true, false];
+  } else if (name === 'Delmira') {
+    filterName = ['match', ['get', 'individual-local-identifier'], ['Delmira'], true, false];
+  } else if (name === 'Lucy') {
+    filterName = ['match', ['get', 'individual-local-identifier'], ['Lucy'], true, false];
   } else {
     console.log('error');
   }
   map.setFilter('tortoise-heatmap', ['all', filterName,]);
-
+      
 });
 });
 </script>
