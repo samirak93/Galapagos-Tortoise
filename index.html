@@ -125,11 +125,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2FtaXJhazkzIiwiYSI6ImNqMnJyeWIzMDAwYjEzM2t6M
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/samirak93/cjtp9rrlv0nma1fs5gt17xpd1',
-    center: [-90.644592, -0.715843],
+    center: [-90.288129, -0.586349],
     bearing: 20.54,
-    zoom: 8.3,
+    zoom: 9.5,
     pitch: 60,
-    minZoom: 8.35,
+    minZoom: 9,
     maxZoom: 15
 });
 
@@ -214,39 +214,6 @@ map.on('load', function() {
     console.log('error');
   }
   map.setFilter('tortoise-heatmap', ['all', filterName,]);
-
-  var filter_data=map.querySourceFeatures('tortoise', {'sourceLayer': 'tortoise', filter: filterName})
-
-  var x=0
-  var y=0
-  var z=0
-  var y_con=0
-
-  for (i = 0; i < filter_data.length; i++) {
-  x+=filter_data[i].tile.x
-  y+=filter_data[i].tile.y
-  z+=filter_data[i].tile.z
-  }
-  x=x/filter_data.length
-  y=y/filter_data.length
-  z=z/filter_data.length
-
-  function tile2long(x,z) {
-  return (x/Math.pow(2,z)*360-180);
-  }
-
-  function tile2lat(y,z) {
-  var n=Math.PI-2*Math.PI*y/Math.pow(2,z);
-  return (180/Math.PI*Math.atan(0.5*(Math.exp(n)-Math.exp(-n))));
-  }
-
-  var NW_long = tile2long(x,z);
-  var SW_long = tile2long(x,z);
-  var SW_lat =  tile2lat(y+1,z);
-  var NE_long = tile2long(x+1,z);
-  var NE_lat =  tile2lat(y,z);
-  map.fitBounds([[SW_long, SW_lat],[NE_long, NE_lat]],{
-  padding: {top: 5, bottom: 5, left: 5, right: 25}});
 
 });
 });
